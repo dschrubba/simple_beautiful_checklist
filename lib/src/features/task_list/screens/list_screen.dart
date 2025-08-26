@@ -62,9 +62,10 @@ class _ListScreenState extends State<ListScreen> {
                         icon: const Icon(Icons.add),
                         onPressed: () {
                           if (_controller.text.isNotEmpty) {
-                            widget.repository.addItem(_controller.text);
-                            _controller.clear();
-                            _updateList();
+                            widget.repository.addItem(_controller.text).then((_) {
+                              _controller.clear();
+                              _updateList();
+                            });
                           }
                         },
                       ),
