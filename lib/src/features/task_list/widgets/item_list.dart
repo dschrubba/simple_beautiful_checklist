@@ -51,9 +51,12 @@ class ItemList extends StatelessWidget {
                           TextButton(
                             child: const Text('Speichern'),
                             onPressed: () {
-                              repository.editItem(index, editController.text);
-                              updateOnChange();
-                              Navigator.of(context).pop();
+                              repository.editItem(index, editController.text).then((_) {
+                                updateOnChange();
+                                if (context.mounted) {
+                                  Navigator.of(context).pop();
+                                }
+                              });
                             },
                           ),
                         ],
