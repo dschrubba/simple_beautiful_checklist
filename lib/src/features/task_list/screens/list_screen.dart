@@ -71,9 +71,10 @@ class _ListScreenState extends State<ListScreen> {
                     ),
                     onSubmitted: (value) {
                       if (value.isNotEmpty) {
-                        widget.repository.addItem(value);
-                        _controller.clear();
-                        _updateList();
+                        widget.repository.addItem(value).then((_) {
+                          _controller.clear();
+                          _updateList();
+                        });
                       }
                     },
                   ),
